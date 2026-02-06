@@ -100,7 +100,7 @@ const text = response.text();
 ### 5. API Key Configuration
 **File**: `.env.local`
 ```
-NEXT_PUBLIC_GEMINI_API_KEY=AIzaSyDTX9bEWY7adlosQNPCJZLJY7yTrSbUVWg
+NEXT_PUBLIC_GEMINI_API_KEY=[REDACTED]
 ```
 ✅ Valid Google AI Studio API key
 ✅ Configured for runtime access
@@ -111,7 +111,7 @@ NEXT_PUBLIC_GEMINI_API_KEY=AIzaSyDTX9bEWY7adlosQNPCJZLJY7yTrSbUVWg
 
 When the app runs, you can see in the browser console:
 ```
-🔑 API Key loaded: AIzaSyDTX9...UVWg
+🔑 API Key loaded: [REDACTED]
 🚀 Starting analysis with: {mode: 'reason', activeLens: 'universal'}
 🔄 Attempting connection to model: gemini-2.5-flash (Attempt 1/2)
 ✅ Success with model: gemini-2.5-flash

@@ -1,6 +1,11 @@
+require('dotenv').config({ path: '.env.local' });
 const https = require('https');
 
-const apiKey = "AIzaSyDTX9bEWY7adlosQNPCJZLJY7yTrSbUVWg";
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+if (!apiKey) {
+    console.error("❌ No API key found in .env.local");
+    process.exit(1);
+}
 
 console.log("🧪 Testing GEMINI 3 API Connection...\n");
 

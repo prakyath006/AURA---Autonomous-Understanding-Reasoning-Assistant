@@ -1,5 +1,11 @@
+require('dotenv').config({ path: '.env.local' });
 // Test the new API key
-const apiKey = "AIzaSyDTX9bEWY7adlosQNPCJZLJY7yTrSbUVWg";
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+if (!apiKey) {
+    console.error("❌ No API key found in .env.local");
+    process.exit(1);
+}
 
 console.log("🧪 Testing NEW Gemini API Key...");
 console.log("Key:", apiKey.substring(0, 10) + "..." + apiKey.substring(apiKey.length - 4));

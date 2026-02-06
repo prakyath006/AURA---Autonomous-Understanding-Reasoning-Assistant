@@ -26,7 +26,7 @@
 3. **Capture an image**
 4. **Point to the logs**:
    ```
-   🔑 API Key loaded: AIzaSyDTX9...UVWg
+   🔑 API Key loaded: [REDACTED]
    🚀 Starting analysis with: {mode: 'reason', activeLens: 'universal'}
    🔄 Attempting connection to model: gemini-2.5-flash (Attempt 1/2)
    ✅ Success with model: gemini-2.5-flash

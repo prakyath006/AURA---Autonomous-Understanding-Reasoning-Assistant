@@ -1,5 +1,13 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: '.env.local' });
+
 // Quick test script to verify Gemini API key works
-const apiKey = "AIzaSyAK1Bi4lml1gxz3be-3W5by-V1S_zdNQx4";
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+
+if (!apiKey) {
+    console.error("❌ No API key found in .env.local");
+    process.exit(1);
+}
 
 console.log("🧪 Testing Gemini API Key...");
 console.log("Key:", apiKey.substring(0, 10) + "..." + apiKey.substring(apiKey.length - 4));

@@ -1,8 +1,13 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: '.env.local' });
+
 // Get full list of available Gemini models
-const apiKey = "AIzaSyAK1Bi4lml1gxz3be-3W5by-V1S_zdNQx4";
+const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
-console.log("🔍 Fetching all available Gemini models...\n");
-
+if (!apiKey) {
+    console.error("❌ No API key found in .env.local");
+    process.exit(1);
+}
 const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`;
 
 fetch(url)
