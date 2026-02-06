@@ -270,7 +270,7 @@ Return ONLY a JSON array like:
         sessionStorage.setItem('analyzing_lens', activeLens);
 
         // Redirect to analyzing page IMMEDIATELY
-        router.push('/analyzing');
+        // router.push('/analyzing'); // DISABLE: Keep user on page to show errors if they happen
 
         try {
             console.log("🚀 Starting analysis with:", { mode, activeLens });
@@ -342,7 +342,7 @@ Return ONLY a JSON array like:
             console.error("Error details:", errorMessage);
             setError(`Connection Lost: ${errorMessage}`);
             // Go back to scanner on error
-            router.push('/');
+            // router.push('/'); // DISABLE: Don't reload page, keep error visible
         } finally {
             setAnalyzing(false);
         }
