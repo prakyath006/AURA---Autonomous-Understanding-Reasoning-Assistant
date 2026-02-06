@@ -108,7 +108,9 @@ export default function Scanner() {
             console.log("✅ Received response:", response);
 
             // JSON Parsing Logic
-            const match = response.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
+            // cleaning the response
+            const cleaned = response.replace(/```(?:json)?/g, '').replace(/```/g, '').trim();
+            const match = cleaned.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
             let finalResult: any = { observation: response, reasoning: "Raw output", suggestion: "N/A" };
 
             if (match) {

@@ -282,16 +282,13 @@ Return ONLY a JSON array like:
 
             try {
                 // 1. Cleaner: Remove Markdown code blocks (```json ... ```)
-                let cleanResponse = response.replace(/```json/g, '').replace(/```/g, '').trim();
+                const cleaned = response.replace(/```(?:json)?/g, '').replace(/```/g, '').trim();
 
-                // 2. Extractor: Find the first '{' and last '}' to handle preamble text
-                const firstOpen = cleanResponse.indexOf('{');
-                const lastClose = cleanResponse.lastIndexOf('}');
+                // 2. Extractor: Find the first '{' or '[' and match to the end
+                const match = cleaned.match(/(\{[\s\S]*\}|\[[\s\S]*\])/);
 
-                if (firstOpen !== -1 && lastClose !== -1) {
-                    cleanResponse = cleanResponse.substring(firstOpen, lastClose + 1);
-
-                    const parsed = JSON.parse(cleanResponse);
+                if (match) {
+                    const parsed = JSON.parse(match[0]);
 
                     if (Array.isArray(parsed)) {
                         finalResult = { detectionList: parsed, observation: "Scan Complete. Multiple targets identified." };

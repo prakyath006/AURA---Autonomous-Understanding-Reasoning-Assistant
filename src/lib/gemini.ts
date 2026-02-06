@@ -50,7 +50,7 @@ export async function analyzeScene(
     let systemInstruction = "";
 
     if (mode === 'detect') {
-        systemInstruction = `Return a JSON array of detected items with format: [{"item": "name", "type": "category", "status": "loc/state"}]. Be brief.`;
+        systemInstruction = `Return a JSON array of detected items with format: [{"item": "name", "type": "category", "status": "loc/state"}]. Be brief. Do not use markdown formatting. Return raw JSON only.`;
     } else {
         // Specialized Lenses
         switch (lens) {
