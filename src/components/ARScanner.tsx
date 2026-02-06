@@ -687,6 +687,97 @@ Return ONLY a JSON array like:
                 )}
             </div>
 
+            {/* Analyzing Overlay (Inline) */}
+            <AnimatePresence>
+                {analyzing && !error && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-50 bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center p-6 text-center"
+                    >
+                        {/* Animated Background Grid */}
+                        <div className="absolute inset-0 z-0 bg-[url('/grid.svg')] opacity-20 animate-pulse pointer-events-none" />
+
+                        {/* Scanning Lines Effect */}
+                        <motion.div
+                            className={`absolute w-full h-1 ${theme.bg} opacity-50 shadow-[0_0_20px_rgba(0,255,255,0.5)]`}
+                            animate={{ top: ['0%', '100%'] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                        />
+
+                        <div className="relative z-10 flex flex-col items-center gap-8">
+                            {/* Animated Icon */}
+                            <motion.div
+                                animate={{
+                                    scale: [1, 1.2, 1],
+                                    rotate: [0, 180, 360]
+                                }}
+                                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                className={`relative`}
+                            >
+                                <div className={`absolute inset-0 rounded-full ${theme.bg} opacity-20 blur-xl`} />
+                                <BrainCircuit className={`${theme.text} size-20 relative z-10`} />
+                            </motion.div>
+
+                            {/* Status Text */}
+                            <div className="space-y-4">
+                                <motion.h1
+                                    className="text-4xl font-black tracking-tighter text-white"
+                                    animate={{ opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 2, repeat: Infinity }}
+                                >
+                                    ANALYZING...
+                                </motion.h1>
+
+                                <div className="space-y-2">
+                                    <motion.p
+                                        className="text-gray-400 text-sm font-mono"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.2 }}
+                                    >
+                                        <Camera className="inline mr-2 size-4" />
+                                        Processing visual data
+                                    </motion.p>
+                                    <motion.p
+                                        className="text-gray-400 text-sm font-mono"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.8 }}
+                                    >
+                                        <BrainCircuit className="inline mr-2 size-4" />
+                                        Running neural analysis
+                                    </motion.p>
+                                    <motion.p
+                                        className="text-gray-400 text-sm font-mono"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 1.5 }}
+                                    >
+                                        <Zap className="inline mr-2 size-4" />
+                                        Generating insights
+                                    </motion.p>
+                                </div>
+                            </div>
+
+                            {/* Progress Indicator */}
+                            <div className="w-64 h-2 bg-white/10 rounded-full overflow-hidden mt-8">
+                                <motion.div
+                                    className={`h-full ${theme.bg} shadow-[0_0_10px_rgba(0,255,255,0.5)]`}
+                                    animate={{ width: ['0%', '100%'] }}
+                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                                />
+                            </div>
+
+                            <p className="text-xs text-gray-500 font-mono uppercase tracking-widest mt-4">
+                                {activeLens.toUpperCase()} LENS ACTIVE
+                            </p>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Upload / Clear Image Buttons */}
             <div className="absolute bottom-10 right-10 z-30 flex gap-2 pointer-events-auto">
                 {uploadedImage ? (
